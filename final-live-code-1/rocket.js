@@ -13,8 +13,29 @@ RULES:
  - DILARANG menggunakan built in function .split()
 */
 
-function fastestClimber (string) {
+function fastestClimber (str) {
   // your code here
+  var strSplit = str.split(',')
+  var hasil = []
+  for(var i = 0; i < strSplit.length; i++){
+    hasil.push(strSplit[i].split(':'))
+  }
+  
+  for(var j = 0; j < hasil.length; j++){
+    hasil[j].push(parseInt(hasil[j][1].slice(1,2)*60) + parseInt(hasil[j][1].slice(6,8))) 
+  }
+  
+  hasil.sort(sortFunction);
+    function sortFunction(a, b) {
+    if (a[2] === b[2]) {
+      return 0;
+      }
+    else {
+      return (a[2] < b[2]) ? -1 : 1;
+    }
+  }
+
+  return hasil[0][0]
 
 }
 
